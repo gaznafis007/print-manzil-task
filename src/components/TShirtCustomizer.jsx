@@ -61,30 +61,37 @@ const TShirtCustomizer = () => {
     const tShirtImage = new Image();
     const logoImage = new Image();
   
+    // Load the T-shirt image
     tShirtImage.src = image;
   
     tShirtImage.onload = () => {
+      // Clear canvas before drawing new images
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+      // Draw the T-shirt base image
       ctx.drawImage(tShirtImage, 0, 0, canvas.width, canvas.height);
   
       if (logo) {
+        // Create the logo image from the uploaded logo data
         logoImage.src = logo;
-        logoImage.crossOrigin = "anonymous";  // This line enables CORS
-        
         logoImage.onload = () => {
+          // Calculate logo dimensions based on scale
           const logoWidth = logoImage.width * scale;
           const logoHeight = logoImage.height * scale;
+  
+          // Draw the logo onto the T-shirt at the specified position
           ctx.drawImage(logoImage, position.x, position.y, logoWidth, logoHeight);
   
-          // Download the final image
+          // Trigger the image download after everything is drawn
           const link = document.createElement("a");
-          link.download = "custom-tshirt.png";
-          link.href = canvas.toDataURL();
-          link.click();
+          link.download = "custom-tshirt.png";  // Specify download filename
+          link.href = canvas.toDataURL("image/png");  // Convert canvas to PNG
+          link.click();  // Trigger download
         };
       }
     };
   };
+  
   
 
   return (
