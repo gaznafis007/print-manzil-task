@@ -1,6 +1,7 @@
 
 import './App.css'
 import CustomTable from './components/CustomTable'
+import TShirtCustomizer from './components/TShirtCustomizer'
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
   return (
     <>
       <CustomTable/>
+      <TShirtCustomizer/>
     </>
   )
 }
